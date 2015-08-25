@@ -1,0 +1,65 @@
+<ion-content id="__signup">
+
+  <div class="card __logo">
+    <img class="__img" src="img/octant_logo.png">
+  </div>
+
+  <h3>Sign Up with Email</h3>
+
+  <div class="card">
+
+    <ul class="list">
+
+      <li class="__signupForm">
+<!--         <div class="item item-input">
+          <input type="file" placeholder="Email Address" ng-model="newuser.image" base-image>
+        </div>
+ -->
+        <div class="item item-input">
+          <input type="text" ng-model="newuser.email" placeholder="Email Address">
+        </div>
+
+        <div class="item item-input">
+          <input type="password" ng-model="newuser.password" placeholder="Password" passmall>
+        </div>
+
+        <div class="item item-input">
+          <input type="text" ng-model="newuser.first_name" placeholder="First Name">
+        </div>
+
+        <div class="item item-input">
+          <input type="text" ng-model="newuser.last_name" placeholder="Last Name">
+        </div>
+
+        <div class="item item-input">
+          <input type="text" ng-model="newuser.zip" placeholder="Zip Code">
+        </div>
+
+        <div class="item item-icon-left">
+          <i class="icon">
+           <label class="checkbox">
+             <input type="checkbox" ng-model="newuser.is_terms_accepted">
+           </label>
+          </i>
+           <a href="#" class="Button Button-clear" ng-click="terms()">Terms &amp; Condition</a><br/>
+           <a href="#" class="Button Button-clear" ng-click="privacy()">Privacy Policy</a>
+        </div>
+        
+      </li>
+
+
+
+      <li class="__loginButton">
+        <button id="signup" class="button button-block button-outline button-positive"  ng-click="signup()">
+          Sign Up
+        </button>
+<!--         <button class="button button-block button-positive icon-left ion-social-facebook"  ui-sref="facebook">
+          Sign Up with Facebook
+        </button>
+ -->      </li>
+
+    </ul>
+
+  </div>
+
+</ion-content>

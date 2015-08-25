@@ -1,0 +1,108 @@
+<ion-view view-title="Profile">
+  <ion-content class="__profile">
+  	<div class="card">
+		<div class="item item-avatar ">
+	    	<img ng-src="{{image.img64}}" src="img/dummy.jpg" class="lala">
+	    	<p>Change Profile Photo</p>
+
+	    	<label>
+				<input type="file" class="noshow" ng-model="image.img" ng-change="swapimage()" base-image accept="jpg">
+				<p>Please use image under 1MB</p>
+	    	</label>
+ 			<button type="button" class="button button-positive" ng-click="upFile()">Upload</button>
+		</div>
+
+		<div class="item item-body">
+			<div class="list">
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Password</span>
+					<input type="password" ng-model="pass.pass_1" placeholder="Password" passmall/>
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Retype Password</span>
+					<input type="password" ng-model="pass.pass_2" placeholder="Password" passmall/>
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Donor Id</span>
+					<input type="text" ng-model="profile.donor_id" placeholder="Donor Id" disabled/>
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">First Name</span>
+					<input type="text" ng-model="profile.first_name" placeholder="First Name"/>
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Last Name</span>
+					<input type="text" ng-model="profile.last_name" placeholder="Last Name"/>
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Email</span>
+					<input type="text" ng-model="profile.email" placeholder="Email"/>
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Salutation</span>
+					<input type="text" ng-model="profile.salutation" placeholder="Salutation"/>
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Address 1</span>
+					<input type="text" ng-model="profile.address_1" placeholder="Address Line 1"/>
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Address 2</span>
+					<input type="text" ng-model="profile.address_2" placeholder="Address Line 2"/>
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">City</span>
+					<input type="text" ng-model="profile.city" placeholder="City"/>
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">State</span>
+					<input type="text" ng-model="profile.state" placeholder="State"/>
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Zip Code</span>
+					<input type="text" ng-model="profile.zip" placeholder="Zip Code"/>
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Phone No.</span>
+					<input type="text" ng-model="profile.cellphone" placeholder="0300 34 11 681"/>
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Employer</span>
+					<input type="text" ng-model="profile.employer" placeholder="Employer"/>
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Position</span>
+					<input type="text" ng-model="profile.position" placeholder="Position"/>
+				</label>
+				<label class="item item-input item-stacked-label">
+			      <select ng-model="profile.sec_question">
+			        <option ng-repeat="q in questions" value="{{q.question}}">
+			          {{q.question}}
+			        </option>
+			      </select>
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Security Answer</span>
+					<input type="text" ng-model="profile.sec_answer" placeholder=""/>
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span>Facebook</span>
+					<label class="item-input">
+						<i class="icon ion-social-facebook placeholder-icon"></i>
+						<input type="text" placeholder="fb.com/xyz">
+					</label>
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span>Twitter</span>
+					<label class="item-input">
+						<i class="icon ion-social-twitter placeholder-icon"></i>
+						<input type="text" placeholder="fb.com/xyz">
+					</label>
+				</label>
+			</div>
+		</div>
+	  	<button class="button button-positive button-block" ng-click="cont()"> Save</button>
+  	</div>
+  	<br/>
+  </ion-content>
+</ion-view>

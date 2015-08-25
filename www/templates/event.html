@@ -1,0 +1,48 @@
+<ion-view view-title="Event">
+  <ion-content>
+
+	<div class="list card">
+
+		<div class="item item-image ti">
+			<h2>{{feed.message_title}}</h2>
+			<img src="{{feed.pic}}">
+		    <div class="clearfix"></div>
+		</div>
+
+		<div class="item item-avatar ev">
+		    <img ng-src="{{feed.logo_full}}">
+	    	<button class="button button-circle button-small" ng-click="donatetoorg(msg.org_id)"><img src="img/1.png" /></button>
+	    	<a class="button button-circle button-small" href="{{msg.event_link}}" target="_blank"><img src="img/2.png" /></a>
+		    <h2>{{feed.name}}</h2>
+	    </div>
+
+		<div class="item item-text-wrap">
+			<ul class="list">
+			    <li class="item">
+			    	Date:<br/>
+    		    	{{datify(feed.event_date,'date')}}
+			    </li>
+			    <li class="item">
+			    	Start time:<br/>
+    		    	{{datify(feed.start_date,'time')}}
+			    </li>
+			    <li class="item">
+			    	End time:<br/>
+    		    	{{datify(feed.end_date,'time')}}
+			    </li>
+			    <li class="item">
+			    	Location:<br/>
+			    	{{feed.event_location}}
+			    </li>
+			    <li class="item">
+				    Details:<br/>
+					{{feed.content}}
+			    </li>
+			</ul>
+		</div>
+	</div>
+		<br/>
+		<div class="clearfix"></div>
+
+  </ion-content>
+</ion-view>

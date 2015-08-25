@@ -1,0 +1,61 @@
+<ion-view view-title="Donate">
+<ion-content>
+	<div class="list card" style="margin-top:4px">
+		<div class="item item-body">
+			<ion-slide-box show-pager="false" on-slide-changed="slideC(index)" class="__Slide">
+			  <ion-slide>
+			  	<h1>Select An Organization ></h1>
+			  </ion-slide>
+			  <ion-slide ng-repeat="item in slides">
+			  	<img ng-src="{{item.image}}" Alt="{{item.title}}"/>
+			  </ion-slide>
+			</ion-slide-box>
+		</ion-slide-box><br>
+		</div>
+
+		<div class="list">
+		  <label class="item item-input item-select" onclick="return">
+		    <div class="input-label">
+		      Amount:
+		    </div>
+		    <label ng-show="data.selectedItem == 0" class="item-input-wrapper">
+		    	<i class="icon  placeholder-icon">$</i>
+		    	<input type="text" placeholder="375" ng-model="data.amount">
+		  	</label>
+		    <select id="pricelist" disabled="true" ng-model="data.selectedItem"  ng-change="dataChanged(data.selectedItem)" >
+		      <option ng-show="price" ng-repeat="p in price" value="{{p}}">${{p}}</option>
+		      <option value="0">Other</option>
+		    </select>
+		  </label>
+		</div>
+		
+		<a id="dondon" class="button button-icon icon" disabled="true" ng-click="oct_donate(billing.ext_flag)"><img src="img/1.png" ></a>
+	</div>
+		<div class="list card" style="margin-top:-16px">
+			<div class="item item-body">
+				<div class="list">
+				  <div class="item item-input item-stacked-label">
+				    <span class="input-label">Billing Address</span>
+				    <input id="c_add1" ng-model="data.address_line1" type="text" placeholder="Address 1" passmall>
+				    <input id="c_add2" ng-model="data.address_line2" type="text" placeholder="Address 2">
+				  </div>
+				  <label class="item item-input item-stacked-label item-3">
+				    <input id="c_city" ng-model="data.address_city" type="text" placeholder="City">
+				  </label>
+				  <label class="item item-input item-stacked-label item-3">
+				    <input id="c_state" ng-model="data.address_state" type="text" placeholder="State">
+				  </label>
+				  <label class="item item-input item-stacked-label item-3">
+				    <input id="c_zip" ng-model="data.address_zip" type="text" placeholder="Zip">
+				  </label>
+				</div>
+			</div>
+			<div class="item item-text-wrap">
+				<p>{{billing.desc}}</p>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		<br/><br/>
+</div>
+</ion-content>
+</ion-view>

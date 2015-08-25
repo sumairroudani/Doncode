@@ -1,0 +1,42 @@
+<ion-modal-view ng-controller="forgotController">
+  <ion-header-bar>
+    <a ng-click="closeMod()" class="button button-small icon-left ion-chevron-left button-clear button-dark"></a>
+    <h1 class="title">Forgot Password</h1>
+  </ion-header-bar>
+  <ion-content>
+
+    <label class="item item-input item-select">
+      <div class="input-label">
+        Question
+      </div>
+      <select ng-model="forgot.sec_question">
+        <option value="none" selected></option>
+        <option ng-repeat="q in questions" value="{{q.question}}">
+          {{q.question}}
+        </option>
+      </select>
+    </label>
+    <label class="item" ng-hide="forgot.sec_question == 'none'">
+      <h3>{{forgot.sec_question}}</h3>
+    </label>
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">Answer</span>
+      <input type="text" ng-model="forgot.sec_answer" placeholder="{{forgot.sec_question}}"/>
+    </label>
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">Email</span>
+      <input type="text" ng-model="forgot.email" placeholder="{{forgot.email}}"/>
+    </label>
+    <label class="item">
+      <button class="button button-small button-assertive" ng-click="EmailCreds()" ng-show="data.email">
+      Reset Pass via Email
+      </button>
+    </label>
+
+  </ion-content>
+  <ion-footer-bar align-title="left" class="bar-positive">
+    <div class="buttons pull-right">
+      <button class="button" ng-click="forgotsub()">Submit</button>
+    </div>
+  </ion-footer-bar>
+</ion-modal-view>

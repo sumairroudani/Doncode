@@ -1,0 +1,358 @@
+/* Empty. Add your own CSS if you like */
+
+/*Playlists <=== rename this shit*/
+#__sideMenu, 
+.__sideList .list .item,
+.__sideList .list .item-complex,
+.__sideList .list .item-complex .item-content{
+	background-color: #29A0DD !important;
+	color: #fff;
+  	border-left: none;
+  	border-right: none;
+}
+
+.__sideList .list .item:first-child{
+	border-top:none;
+}
+
+.__sideList .list .item{
+	margin-left:20px;
+	margin-right:5px;
+}
+
+.__sideList .list .item h1{
+	color:#fff;
+	text-align: center;
+  font-size: 18pt;
+}
+
+.__sideList a{
+  color: #fff;
+  text-decoration: none;
+}
+
+#__user img {
+  width: 100%;
+}
+
+#__user {
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.__feed .list > a{
+	border: none;
+	background-color: transparent;
+}
+
+.__feed ion-item {
+  border-top-width: 8px;
+}
+
+.__feed h3{
+	display: inline-block;
+}
+
+.__feed i.social {
+  float: right;
+  display: inline-block;
+  background-color: #0096FF;
+  border-radius: 50%;
+  width: 20px;
+  text-align: center;
+  color: #fff;}
+
+.seemore{
+	float:right;
+}
+
+.actionBar {
+  padding-left: 106px;
+  padding-right: 15px;
+}
+
+.__navtabs a.tab-item{
+  position: relative;
+}
+
+.__feed .seemore{
+  min-height: initial;
+  height: 24px;
+  line-height: normal;
+}
+
+/*Login*/
+#__signup,
+#__login{
+	background-color: #29A0DD;
+}
+
+#__login .card,
+#__signup .card,
+#__login .list .item{
+	background-color: transparent;
+}
+
+#__signup .card,
+#__login .card{
+	box-shadow: none;
+}
+
+#__login .list .item input[type="password"],
+#__login .list .item input[type="text"]{
+	width: calc(100% - 32px);
+	padding: 7px
+}
+
+#__login .list{
+	width: calc(100% - 80px);
+	margin: auto;
+}
+
+#__login .list .item i{
+	color: #fff;
+}
+
+.__img{
+	width: 200px;
+}
+
+.__loginButton,
+.__logo{
+	text-align:center;	
+}
+
+.__loginButton .button.button-outline{
+	color: #fff !important;
+	border-color: #fff !important;
+}
+
+.__loginFooter button{
+	margin-top: 0 !important;
+}
+
+.__loginFooter .title,
+.__loginFooter{
+	height: 90px;
+}
+
+.__loginForm .item{
+	border: none !important;
+}
+
+#__signup h3{
+	text-align: center;
+	color: #fff;
+}
+#__signup .__signupForm{
+	width: calc(100% - 70px);
+	margin: auto;
+}
+#__signup .__signupForm .item {
+  margin: 4px 0;
+  background-color: transparent;
+  border-bottom: transparent;
+}
+
+#__signup .__signupForm .item input[type="text"],
+#__signup .__signupForm .item input[type="password"]{
+	background-color: #fff;
+	padding: 7px;
+}
+
+.pull-right {
+  right: 5px;
+  position: absolute;
+}
+
+.button-circle img{
+  width: 40px;
+  
+}
+.button-circle {
+  background-color: transparent;
+  border: none;
+}
+
+.ev .button-circle{
+  float: right;
+}
+
+.ev h2{
+  line-height: 2.75em
+}
+
+.ev img{
+  max-width: 50px !important;
+  max-height: 50px !important;
+  border-radius: 0 !important;
+}
+
+.ev{
+  padding-left: 70px;
+}
+
+.ti h2{
+  position: absolute;
+  bottom: 0;
+  padding: 10px;
+  font-weight: 900;
+  color: #ECECEC;
+  background-color: rgba(51, 51, 51, 0.67);
+  width: 100%;  
+}
+
+.actionBarE .button-circle,
+.actionBar .button-circle{
+//  background-color: #ED8C2B;
+  color: #fff !Important;
+}
+
+.itCont{
+  padding: 0;
+  height: 200px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.itCont h2{
+    padding: 5px;
+    font-size: 20pt;
+    background-color: rgba(255, 255, 255, 0.78);
+}
+.itCont div{
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.78);
+    left: 0;
+    right: 0;
+    padding: 3px 15px;
+}
+
+.__profile .item-avatar{
+	padding-left: 16px;
+	background-color: #E5E5E5;
+}
+.__profile .item-avatar > img:first-child{
+  right: 16px !important;
+  left: initial;
+}
+
+.__feed ion-item{
+  padding:0
+}
+
+.img-cov{
+  height: 150px;
+  padding: 0;
+}
+
+.img-cov img{
+  width: 100%;
+}
+
+.list .item.item-accordion {
+  line-height: 38px;
+  padding-top: 6px;
+  padding-bottom: 0;
+  padding-left: 16px;
+  padding-right: 16px;
+  transition: 0.09s all linear;
+}
+.list .item.item-accordion.ng-hide {
+  line-height: 0px;
+}
+.list .item.item-accordion.ng-hide-add,
+.list .item.item-accordion.ng-hide-remove {
+  display: block !important;
+}
+
+.__terms .item-accordion h1,
+.__terms .item-accordion h2,
+.__terms .item-accordion p,
+.__terms .item-accordion {  
+	white-space: normal !Important;
+}
+
+.item-3{
+  width: 30% !important;
+  margin: 0;
+  display: inline-block;
+}
+
+.noshow{
+  display:none;
+}
+
+.__feed .org h3{
+    height: 24px;
+    vertical-align: middle;  
+}
+.__feed .org img{
+  width: 24px;
+  height: 24px    
+}
+
+.__feed .dt{
+  font-size: 10pt;
+  font-weight: normal;
+}
+
+.__Slide ion-slide{
+  width: 100vw;
+  min-height: 300px;
+}
+.__Slide ion-slide img {
+    margin: auto;
+    display: block;
+}
+.eunread .ev,
+.unread {
+    background-color: #B7B7B7;
+}
+
+.ti {
+    min-height: 50px;
+}
+
+.ti img {
+    width: 100%;
+}
+
+.eunread > *{
+    font-weight: bolder;
+    color: #000 !important;
+}
+.unread > * {
+    transform: scale(1.02);
+    font-weight: bolder;
+    color: #000 !important;
+}
+
+.clearfix {
+  clear: both;
+}
+
+.__org .item img{
+  z-index: 3;
+}
+
+.__org .item .item-content {
+    padding-top: 33px;
+}
+
+.msgs:before,
+.organizaionsC:before,
+.eventsC:before {
+  font-family: arial;
+}
+.organizaionsC:before {
+  content: "o" !important;
+}
+.msgs:before{
+  content: "m" !important;
+}
+.eventsC:before {
+  content: "e" !important;
+}

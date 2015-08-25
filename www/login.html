@@ -1,0 +1,59 @@
+<ion-content id="__login">
+
+  <div class="card __logo">
+    <img class="__img" src="img/octant_logo.png">
+  </div>
+
+  <div class="card">
+
+    <ul class="list">
+
+      <li class="__loginForm">
+        <div class="item item-icon-left">
+          <i class="icon ion-android-mail"></i>
+          <input type="text" ng-model="user.email" placeholder="Email">
+        </div>
+
+        <div class="item item-icon-left">
+          <i class="icon ion-android-lock"></i>
+          <input type="password" ng-model="user.pass" placeholder="Password" passmall>
+        </div>
+
+        <div class="item item-checkbox">
+           <label class="checkbox">
+             <input ng-model="user.remember" type="checkbox">
+           </label>
+           Remember me
+        </div>
+        
+      </li>
+
+
+
+      <li class="__loginButton">
+        <br/>
+        <button class="button button-block button-outline button-positive"  ng-click="login()">
+          Login
+        </button>
+        <br/>
+<!--         <button class="button button-block button-positive icon-left ion-social-facebook" ng-click="getMyLastName()">
+          Login with Facebook
+        </button>
+ -->        <a class="button button-clear button-medium button-stable" ng-click="forgot()">
+          forgot password?
+        </a>
+      </li>
+
+    </ul>
+    <div class="clearfix"></div>
+  </div>
+<br/><br/>
+</ion-content>
+<ion-footer-bar class="bar bar-footer bar-positive __loginFooter">
+  <div class="title">
+    Not a member yet?
+    <button class="button button-balanced button-block" ui-sref="signup">
+      Sign Up now
+    </button>      
+  </div>
+</ion-footer-bar>

@@ -1,0 +1,24 @@
+<ion-view view-title="Events">
+  <ion-content>
+    <ion-list class="__feed">
+      <ion-item ng-repeat="msg in events" class="list" ng-class="msg.is_read ? 'eread' : 'eunread'">
+			<a href="#/app/event/{{msg.link_id}}/{{msg.message_id}}" class="item item-text-wrap itCont" style="background-image:url({{msg.pic}})">
+			    <h2>{{msg.message_title}}</h2>
+			    <div>
+			    	<h3>{{msg.name}}</h3><br/>
+			    	<span><strong>Event Date:</strong> {{datify(msg.event_date,'date')}}</span><br/>
+			    	<span><strong>Event Time:</strong> {{datify(msg.event_date,'time')}}</span><br/>
+			    	<span><strong>Event Location:</strong> {{msg.event_location}}</span>
+			    </div>
+			</a>
+			<div class="item item-divider actionBarE ev">
+		    	<a class="button button-circle button-small" href="{{msg.event_link}}" target="_blank"><img src="img/2.png" /></a>
+		    	<button class="button button-circle button-small" ng-click="donatetoorg(msg.org_id)"><img src="img/1.png" /></button>
+				<div class="clearfix"></div>
+ 			</div>
+		<div style="clear:both"></div>
+      </ion-item>
+    </ion-list>
+    <br/><br/>
+  </ion-content>
+</ion-view>
