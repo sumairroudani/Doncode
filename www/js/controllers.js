@@ -715,7 +715,11 @@ angular.module('starter.controllers', [])
 
 })
 
+<<<<<<< HEAD
 .controller('LoginController', function($scope, facebookService, md5, dataFactory, $cordovaGeolocation,$timeout,$ionicPopup) {
+=======
+.controller('LoginController', function($scope, facebookService, md5, dataFactory, $cordovaGeolocation,$timeout) {
+>>>>>>> b92ab3a0ef4f5ec32f6eea6e0f743353fc15f7f6
 
   var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
   var rep = /^[a-zA-Z0-9]{8,20}$/
@@ -769,6 +773,7 @@ angular.module('starter.controllers', [])
 					API.storage.set('donorImage',uid.image);
 					API.storage.set('remember',$scope.user.remember);
 					$scope.updateSession();
+<<<<<<< HEAD
 					var cm = null;
 					if(login_info==2){
 						$scope.getPass().
@@ -787,6 +792,12 @@ angular.module('starter.controllers', [])
 						dataFactory._go('app.home');
 					}
 
+=======
+					$timeout(function(){
+						$scope.closeMod();
+					}, 2000);
+					dataFactory._go('app.home');
+>>>>>>> b92ab3a0ef4f5ec32f6eea6e0f743353fc15f7f6
 				}
 				else{
 					dataFactory._alert("Error","Cannot Sign in with the given credentials");
@@ -798,11 +809,17 @@ angular.module('starter.controllers', [])
 			},function(res){
 				console.log(res);
 			}).finally(function(){
+<<<<<<< HEAD
 				if(login_info!=2){
 					$timeout(function(){
 						$scope.closeMod();				
 					}, 2000);					
 				}
+=======
+				$timeout(function(){
+					$scope.closeMod();				
+				}, 2000);
+>>>>>>> b92ab3a0ef4f5ec32f6eea6e0f743353fc15f7f6
 			});
 	}
 
