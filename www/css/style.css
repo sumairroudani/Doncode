@@ -342,6 +342,19 @@
     padding-top: 33px;
 }
 
+.__loading{
+  text-align: center;
+  background-color: #29A0DD
+}
+
+.__loading img{
+  width: 250px;
+}
+
+.outer {
+  padding: 25%;
+}
+
 .msgs:before,
 .organizaionsC:before,
 .eventsC:before {
@@ -355,4 +368,10 @@
 }
 .eventsC:before {
   content: "e" !important;
+}
+
+p i {
+  color: #8BBAFF;
+  font-size: 9pt;
+  font-style: italic;
 }

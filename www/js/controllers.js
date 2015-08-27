@@ -85,7 +85,13 @@ angular.module('starter.controllers', [])
 					x[i].pic = null;
 				}
 				lii = x[i].content
-				x[i].contentPrev = x[i].content.slice(0,100);
+				var temp = document.createElement('div');
+					temp.innerHTML = x[i].content
+				var text = temp.textContent || temp.innerText || "";
+				if(text.length > 100)
+					x[i].contentPrev = text.slice(0,100);
+				else
+					x[i].contentPrev = x[i].content
 				x[i].link_id = i;
 				x[i].acro = (x[i].msg_type_id == 2) ? "event" : "feed" ;
 				feeder[i] = x[i];
@@ -263,7 +269,7 @@ angular.module('starter.controllers', [])
 			console.log("pass Exisits");
 			if($scope.pass.pass_2!=null){
 				if(!rep.test($scope.pass.pass_2)){
-					dataFactory._alert("Incomplete Form","Your password must be between 8 and 20 characters");
+					dataFactory._alert("Incomplete Form","Your password must be between 8 and 20 characters and must contain only standard characters and numbers, it is not case sensitive");
 					return;
 				}
 				if($scope.pass.pass_1 === $scope.pass.pass_2){
@@ -517,7 +523,7 @@ angular.module('starter.controllers', [])
 
 		    						if(d)
 										if(!(d.length > 8)){
-											dataFactory._alert("Incorrect Password", "The length should be 9 characters");
+											dataFactory._alert("Incorrect Password", "Your password must be between 8 and 20 characters and must contain only standard characters and numbers, it is not case sensitive");
 											return;
 										}
 
@@ -528,6 +534,7 @@ angular.module('starter.controllers', [])
 		    						then(function(res){
 		    							// console.log(res);
 		    							dataFactory._alert('Updated Successfully');
+		    							$scope.closeMod();
 		    						})
 		    					});
 		    					// dataFactory.service('PUT','http://app.octantapp.com/api/reset_pswrd_upd',$scope.data)
@@ -708,8 +715,10 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('LoginController', function($scope, facebookService, md5, dataFactory, $cordovaGeolocation) {
+.controller('LoginController', function($scope, facebookService, md5, dataFactory, $cordovaGeolocation,$timeout,$ionicPopup) {
 
+  var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+  var rep = /^[a-zA-Z0-9]{8,20}$/
   did = API.storage.get('donorId')
   rem = API.storage.get('remember')
   if(!rem){
@@ -741,7 +750,8 @@ angular.module('starter.controllers', [])
 		if($scope.user.remember)
 			$scope.user.login_info = 1
 		console.log($scope.user)
-		dataFactory._loading(true,'logging in');
+	$scope.loadm();
+		// dataFactory._loading(true,'logging in');
 		$scope.user.password = md5.createHash($scope.user.pass || '');
 		// console.log($scope.user);
 		dataFactory.service('POST',"http://app.octantapp.com/api/userlogin/123456789",
@@ -749,6 +759,7 @@ angular.module('starter.controllers', [])
 			then(function(res){
 
 				var uid = res.data.Sucess;
+				login_info = res.data.login_info
 				console.log(res.data)
 				if(uid != "false"){
 					// console.log(uid);
@@ -758,7 +769,24 @@ angular.module('starter.controllers', [])
 					API.storage.set('donorImage',uid.image);
 					API.storage.set('remember',$scope.user.remember);
 					$scope.updateSession();
-					dataFactory._go('app.home');
+					var cm = null;
+					if(login_info==2){
+						$scope.getPass().
+						then(function(dat){
+    						dataFactory.service('PUT','http://app.octantapp.com/api/reset_pswrd_upd',{'password':dat,donor_id:App_Session.donor_id}).
+    						then(function(res){
+    							console.log(res);
+    							dataFactory._alert('Updated Successfully');
+    						})
+							$timeout(function(){
+								$scope.closeMod();				
+							}, 2000);					
+							dataFactory._go('app.home');
+						});
+					} else {
+						dataFactory._go('app.home');
+					}
+
 				}
 				else{
 					dataFactory._alert("Error","Cannot Sign in with the given credentials");
@@ -770,10 +798,44 @@ angular.module('starter.controllers', [])
 			},function(res){
 				console.log(res);
 			}).finally(function(){
-				dataFactory._loading(false);
+				if(login_info!=2){
+					$timeout(function(){
+						$scope.closeMod();				
+					}, 2000);					
+				}
 			});
 	}
 
+	$scope.getPass = function(){
+		$scope.data = {}
+		return myPopup = $ionicPopup.show({
+		    template: '<input type="password" ng-model="data.password" passmall><span class="err"></span>',
+		    title: 'Match Found',
+		    subTitle: 'Enter New Password',
+		    scope: $scope,
+		    buttons: [
+		      { 
+		      	text: 'Cancel',
+		      	onTap: function(e){
+		      		return false;
+		      	}
+		      },
+		      {
+		        text: '<b>Confirm</b>',
+		        type: 'button-positive',
+		        onTap: function(e) {
+		          if (!$scope.data.password && rep.test($scope.data.password)) {
+		          	document.querySelector('span.err').innerHTML = 'Your password must be between 8 and 20 characters and must contain only standard characters and numbers, it is not case sensitive.';
+		            e.preventDefault();
+		          } else {
+		          	console.log($scope.data);
+		            return $scope.data.password;
+		          }
+		        }
+		      }
+		    ]
+		});
+	}
 //
 })
 
@@ -851,7 +913,7 @@ angular.module('starter.controllers', [])
     			return;
     		}
     		if(!rep.test($scope.newuser.password)){
-    			dataFactory._alert("Incomplete Form","Your password must be between 6 and 20 characters. It must contain a mixture of upper and lower case letters, and at least one number or symbol.");
+    			dataFactory._alert("Incomplete Form","Your password must be between 8 and 20 characters and must contain only standard characters and numbers, it is not case sensitive.");
     			return;
     		}
 		}
@@ -1014,6 +1076,14 @@ angular.module('starter.controllers', [])
 		email: $scope.profile.email
 	};
 
+	var cardcache  = API.storage.get('cardcache');
+
+	if(cardcache!=undefined||cardcache){
+		$scope.data.number = cardcache.ca_number
+		$scope.data.cvc = cardcache.ca_cvc
+		$scope.data.expiry = cardcache.ca_expiry
+	}
+
 	$scope.price = []
 
 	$scope.postData = {}
@@ -1049,8 +1119,7 @@ angular.module('starter.controllers', [])
 							zip: ob[key].zip,
 							state: ob[key].state,
 							ext_flag: ob[key].is_external_needed,
-							link_payment: ob[key].link_payment,
-							tel: "+92 321 9579365",
+							link_payment: ob[key].link_payment
 						});
 						if($stateParams.orgid==ob[key].org_id)
 							slto = count;						
@@ -1080,7 +1149,6 @@ angular.module('starter.controllers', [])
 						city: null,
 						zip: null,
 						state: null,
-						tel: null,
 					}
 			    // console.log('page loading completed');
 			});
@@ -1187,7 +1255,6 @@ angular.module('starter.controllers', [])
 				city: null,
 				zip: null,
 				state: null,
-				tel: null
 			}
 
 			document.getElementById('pricelist').disabled = true
@@ -1217,8 +1284,6 @@ angular.module('starter.controllers', [])
 	console.log($scope.data);
 
 	$scope.checkout = function(){
-
-
 		if(
 			$scope.data.expiry 			&&
 			$scope.data.number 			&&
@@ -1268,7 +1333,7 @@ angular.module('starter.controllers', [])
 		}
 		if(! $.payment.validateCardCVC($scope.postData.cvc) ){
 			dataFactory._alert("Data Error","Invalid CVC")
-			return			
+			return
 		}
 
     	dataFactory.service('POST','http://app.octantapp.com/scrape',$scope.postData).
@@ -1286,6 +1351,16 @@ angular.module('starter.controllers', [])
     	}).
     	finally(function(){
 		    $scope.modal.hide();
+
+		    if($scope.data.remember){
+		    	var cardcache = {
+		    		ca_number : $scope.data.number,
+		    		ca_cvc : $scope.data.cvc,
+		    		ca_expiry : $scope.data.expiry
+		    	}
+		    	API.storage.set('cardcache',cardcache);
+		    }
+		    else{API.storage.remove('cardcache')}
     	})
 
 	}
@@ -1343,7 +1418,6 @@ angular.module('starter.controllers', [])
 								city: ob[key].city,
 								zip: ob[key].zip,
 								state: ob[key].state,
-								tel: "+92 321 9579365"
 
 							});
 							if($stateParams.orgid==ob[key].org_id)
@@ -1374,7 +1448,6 @@ angular.module('starter.controllers', [])
 					city: null,
 					zip: null,
 					state: null,
-					tel: null,
 				}
 
 		    // console.log('page loading completed');
@@ -1467,7 +1540,6 @@ angular.module('starter.controllers', [])
 				city: null,
 				zip: null,
 				state: null,
-				tel: null
 			}
 
 			document.getElementById('pricelist').disabled = true

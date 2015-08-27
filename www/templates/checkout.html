@@ -29,7 +29,7 @@
 			<div>
 			  <label class="item item-input">
 				<span class="input-label">Email </span>
-			    <input id="c_email" ng-model="data.email" type="text">
+			    <input id="c_email" ng-model="data.email" type="text" passmall>
 			  </label>
 			  <label class="item item-input">
 				<span class="input-label">Card Number </span>
@@ -42,6 +42,13 @@
 			  <label class="item item-input">
 				<span class="input-label">CVC </span>
 			    <input id="c_cvc" ng-model="data.cvc" type="text">
+			  </label>
+			  <label class="item item-checkbox">
+			 	<label class="checkbox">
+			       <input id="c_remember" ng-model="data.remember" type="checkbox">
+			     </label>
+			     Remember Me
+			     <P ng-show="data.remember"><i>The data will be automatically removed when logged out<i></P>
 			  </label>
 			</div>
 			<h4>Billing Information</h4>
