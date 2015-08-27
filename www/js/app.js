@@ -83,6 +83,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'angular-md5' , 'ngCo
     });
   };
 
+  $rootScope.loadm = function() {
+    $ionicModal.fromTemplateUrl('templates/loading.html', {
+      scope: $rootScope
+    }).then(function(modal) {
+      $rootScope.modal = modal;
+      $rootScope.modal.show();
+    });
+  };
+
   $rootScope.forgot = function() {
     $ionicModal.fromTemplateUrl('templates/forgot.html', {
       scope: $rootScope
@@ -157,6 +166,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'angular-md5' , 'ngCo
     url: "/signup",
     cache: false,
     templateUrl: "templates/signup.html",
+    controller: 'SignupController'
+    })
+  .state('logout', {
+    url: "/logout",
+    cache: false,
     controller: 'SignupController'
     })
   .state('facebook', {

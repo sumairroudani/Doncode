@@ -6,7 +6,7 @@
 		    <a class="item item-thumbnail-left item-text-wrap" href="#/app/{{feed.acro}}/{{feed.link_id}}/{{feed.message_id}}" ng-click="isreadchk({{false+','+feed.link_id}})">
 
 		      <img ng-src="{{feed.pic}}" ng-show=" feed.pic || feed.pic.length>0 ? true : false">
-		      <div class="org">{{feed.iden}}
+		      <div class="org">
 			    <img ng-src="{{feed.logo_full}}"> <h3>{{feed.name}}</h3>
 		    	<h2>{{feed.message_title}}</h2>
 		      	<i class="icon social {{platforms(feed.msg_type_id)}}"></i>
@@ -18,7 +18,7 @@
 		      	</div>
 		      </div>
 		      <span>
-			      <div ng-show="lala == true" ng-bind-html-unsafe="feed.content">{{feed.contentPrev}}{{ feed.content.length>100 ? '...' : ''}}</div>
+			      <div ng-show="lala == true" ng-bind-html-unsafe="feed.contentPrev">{{feed.contentPrev}}{{ feed.content.length>100 ? '...' : ''}}</div>
 			      <div ng-show="lala == false" ng-bind-html="feed.content">{{feed.content}}</div>		      	
 		      </span>
 		    </a>
