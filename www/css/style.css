@@ -375,3 +375,21 @@ p i {
   font-size: 9pt;
   font-style: italic;
 }
+.popup-title img {
+    width: 100%;
+}
+
+footer.org{
+    display: block;
+    position: absolute;
+    bottom: 47px;
+    width: 100%;
+    height: 60px;
+    background-color: #fff;
+    padding: 3px 0;
+    margin: 0;
+}
+
+footer.org button {
+    margin: 0 !important;
+}

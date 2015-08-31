@@ -10,11 +10,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'angular-md5' , 'ngCo
 
   document.addEventListener("deviceready", function () {
 
-    $rootScope.device = $cordovaDevice.getDevice();
-    console.log("Dev:",$rootScope.device);
+    $rootScope.dev1 = ionic.Platform.device();//$cordovaDevice.getDevice();
+    console.log("Dev:",$rootScope.dev1);
 
   }, false);
 
+    console.log("Dev:",ionic.Platform);
   $rootScope.Donor = {
   }
 

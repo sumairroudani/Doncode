@@ -1,18 +1,7 @@
 <ion-view view-title="Select Organization">
   <ion-content>
     <ion-list class="__org">
-    	<label ng-repeat="org in organizaions" class="item item-radio item-thumbnail-left" ng-hide="org.is_checked">
-		    <img ng-src="{{org.logo_full}}">
-		    <input type="checkbox" name="group" ng-model="org.is_checked" ng-click="checkOrg(org.org_id)">
-		    <div class="item-content">
-		      {{org.name}}
-		    </div>
-		    <i class="radio-icon ion-checkmark"></i>
-		</label>
-		<label>
-			<hr/>
-		</label>
-    	<label ng-repeat="org in checkedOrgs" class="item item-radio item-thumbnail-left" ng-show="org.is_active">
+    	<label ng-repeat="org in organizaions | filter:filterBySearch" class="item item-radio item-thumbnail-left">
 		    <img ng-src="{{org.logo_full}}">
 		    <input type="checkbox" name="group" ng-model="org.is_checked" ng-click="checkOrg(org.org_id)">
 		    <div class="item-content">
@@ -21,14 +10,15 @@
 		    <i class="radio-icon ion-checkmark"></i>
 		</label>
     </ion-list>
-    <label>
-	    <button id="" class="button button-block button-positive" ng-show="organizaions!=null ? true : false"  ng-click="conferOrgs()">
-		  Confirm
-		</button>
-    </label>
+    <br/><br/>
     <br/><br/>
     <br/><br/>
     <div class="clearfix"></div>
 
   </ion-content>
+  <footer class="org">
+    <button id="" class="button button-block button-positive" ng-show="organizaions!=null ? true : false"  ng-click="orgSelect()">
+	  Select Organizations
+	</button>
+  </footer>
 </ion-view>

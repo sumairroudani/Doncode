@@ -1,0 +1,30 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title positive">Review Organization</h1>
+  </ion-header-bar>
+  <ion-content>
+    <ion-list class="__org">
+    	<label ng-repeat="org in checkedOrgs" class="item item-thumbnail-left" ng-show="org.is_active">
+		    <img ng-src="{{org.logo_full}}">
+<!-- 		    <input type="checkbox" name="group" ng-model="org.is_checked" ng-click="checkOrg(org.org_id)">
+ -->		    <div class="item-content">
+		      {{org.name}}
+		    </div>
+		</label>
+    </ion-list>
+    <label>
+    </label>
+    <br/><br/>
+    <br/><br/>
+    <div class="clearfix"></div>
+
+  </ion-content>
+  <ion-footer-bar>
+	    <button id="" class="button button-assertive" ng-click="closeMod()">
+		  Cancel
+		</button>
+	    <button id="" class="button button-positive" ng-show="organizaions!=null ? true : false"  ng-click="conferOrgs()">
+		  Confirm
+		</button>
+  </ion-footer-bar>
+</ion-modal-view>
