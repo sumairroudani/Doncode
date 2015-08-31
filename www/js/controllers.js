@@ -877,10 +877,19 @@ angular.module('starter.controllers', [])
 		"t_c_timestamp"			: null,
 
 		"device_type"			: null,
+			//model: "Google Nexus 5 - 4.4.4 - API 19 - 1080x1920"
 		"device_identification"	: null, 
-		"device_os"				: null, 
+			//uuid: "353737726ba38a30"
+		"device_os"				: null,
+			//platform: "Android"
+		"device_os_version"		: null,
+			//version : "4.4.4"
 		"octant_donor_version"	: null, 
 		"updated_on"			: null,
+
+		"device_available"		: null,
+		"device_cordova"		: null,
+		"device_manufacturer"	: "Genymotion",
 
 		"latitude"				: null,
 		"longitude"				: null
@@ -895,12 +904,26 @@ angular.module('starter.controllers', [])
 		"is_terms_accepted"	: "Terms & Conditions",
 	}
 
-
 	dataFactory._coordinates().
 		then(function (position) {
 		    $scope.newuser.latitude  = position.coords.latitude;
 		    $scope.newuser.longitude = position.coords.longitude;
 		    console.log(position);
+
+			console.log($scope.dev1.flag);
+			console.log($scope.dev1);
+			if($scope.dev1.flag){
+				$scope.newuser.device_type = $scope.dev1.model
+				$scope.newuser.device_identification = $scope.dev1.uuid
+				$scope.newuser.device_os = $scope.dev1.platform
+				$scope.newuser.device_os_version = $scope.dev1.version
+				$scope.newuser.octant_donor_version = null
+				$scope.newuser.updated_on = null
+				$scope.newuser.device_available =  $scope.dev1.available
+				$scope.newuser.device_cordova_version = $scope.dev1.cordova
+				$scope.newuser.device_manufacturer = $scope.dev1.manufacturer				
+			}
+
 	    })
 
 

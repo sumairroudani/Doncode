@@ -7,10 +7,13 @@
 angular.module('starter', ['ionic', 'starter.controllers', 'angular-md5' , 'ngCordova'])
 
 .run(function($rootScope,$ionicPlatform,$ionicModal,$window,dataFactory,$cordovaDevice) {
+  $rootScope.dev1 = {};
+  $rootScope.dev1.flag = false;
 
   document.addEventListener("deviceready", function () {
 
-    $rootScope.dev1 = ionic.Platform.device();//$cordovaDevice.getDevice();
+    $rootScope.dev1 = $cordovaDevice.getDevice();
+    $rootScope.dev1.flag = true;
     console.log("Dev:",$rootScope.dev1);
 
   }, false);
@@ -45,7 +48,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'angular-md5' , 'ngCo
         donor_id    : API.storage.get('donorId'),
         donor_name  : API.storage.get('donorName'),
         donor_image : API.storage.get('donorImage'),
-        donor_image : API.storage.get('remember'),
         remember    : false
       }
 
