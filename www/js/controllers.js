@@ -1738,6 +1738,22 @@ angular.module('starter.controllers', [])
   };
 })
 
+.directive("navigateTo",function($ionicGesture) {
+  return {
+    restrict: 'A',
+    link:function ($scope,$element,$attr) {
+
+      var tapHandler = function(e) {
+        var inAppBrowser = window.open(encodeURI($attr.navigateTo),'_blank','location=yes','toolbar=yes');
+      };
+      var tapGesture = $ionicGesture.on('tap',tapHandler,$element);
+      $scope.$on('$destroy',function() {
+        $ionicGesture.off(tapGesture,'tap',tapHandler);
+      });
+    }
+  }
+})
+
 .directive('passmall', function() {
    return {
      require: 'ngModel',
