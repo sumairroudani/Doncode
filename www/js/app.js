@@ -25,7 +25,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'angular-md5' , 'ngCo
   $rootScope.updateProf = function(){
     profchk = null;
     dataFactory._loading(true);
-    dataFactory.service('POST',"http://testapp.octantapp.com/api/donor_dg",{donor_id:App_Session.donor_id}).
+    dataFactory.service('POST',"http://testapp.octantapp.com:8282/api/donor_dg",{donor_id:App_Session.donor_id}).
     then(function(res){
       console.log('prof',res.data);
       rem = API.storage.get('remember');
