@@ -16,7 +16,7 @@ angular.module('starter.controllers', [])
 	$scope.asyncCount = function(){
 		
 		dataFactory._loading(true);
-		dataFactory.service('POST','http://app.octantapp.com/api/message_count',{donor_id:App_Session.donor_id}).
+		dataFactory.service('POST','http://testapp.octantapp.com/api/message_count',{donor_id:App_Session.donor_id}).
 		then(function(res){
 			console.log(res.data);
 			$scope.data.unread = {msgs:res.data.msg,feed:res.data.feed,events:res.data.events}
@@ -76,7 +76,7 @@ angular.module('starter.controllers', [])
 	$scope.feeds = API.storage.get("feeds_"+App_Session.donor_id);
 	var donid = App_Session.donor_id;
 
-	dataFactory.service("POST","http://app.octantapp.com/api/msg_feeds",{'donor_id':donid}).
+	dataFactory.service("POST","http://testapp.octantapp.com/api/msg_feeds",{'donor_id':donid}).
 		success(function(data, textStatus, xhr){
 			var feeder = {};
 			var x = data.feed_id;
@@ -111,7 +111,7 @@ angular.module('starter.controllers', [])
 	$scope.isreadchk = function(message_id,link){
 		$scope.feeds[link].is_read = true;
 		if(message_id!=false){
-			dataFactory.service('POST','http://app.octantapp.com/api/message_read/123456789',{'msg_id':message_id, 'donor_id':donid}).
+			dataFactory.service('POST','http://testapp.octantapp.com/api/message_read/123456789',{'msg_id':message_id, 'donor_id':donid}).
 				success(function(data, textStatus, xhr) {
 					console.log(data);
 				}).
@@ -164,7 +164,7 @@ angular.module('starter.controllers', [])
 		$scope.feed = AllFeeds[index];
 		$scope.feed.is_read = true;
 		console.log("foundFeed:",$scope.feed)
-		dataFactory.service('POST','http://app.octantapp.com/api/message_read/123456789',{'msg_id':msgid, 'donor_id':donid}).
+		dataFactory.service('POST','http://testapp.octantapp.com/api/message_read/123456789',{'msg_id':msgid, 'donor_id':donid}).
 			success(function(data, textStatus, xhr) {
 				console.log(data);
 			}).
@@ -192,7 +192,7 @@ angular.module('starter.controllers', [])
 	if(AllFeeds[index]||AllFeeds[index]!=undefined){
 		$scope.feed = AllFeeds[index];
 		$scope.feed.is_read = true;
-		dataFactory.service('POST','http://app.octantapp.com/api/message_read/123456789',{'msg_id':msgid, 'donor_id':donid}).
+		dataFactory.service('POST','http://testapp.octantapp.com/api/message_read/123456789',{'msg_id':msgid, 'donor_id':donid}).
 			success(function(data, textStatus, xhr) {
 		console.log("foundFeed:",$scope.feed)
 				console.log('singlePost:',data);
@@ -296,7 +296,7 @@ angular.module('starter.controllers', [])
 				return
 			}
 		dataFactory._loading(true,"Updating Profile");
-		dataFactory.service('PUT','http://app.octantapp.com/api/donor',$scope.profile).
+		dataFactory.service('PUT','http://testapp.octantapp.com/api/donor',$scope.profile).
 			success(function (data, status, headers, config) {
 				if(data.Error && data.Message.code == "ER_DUP_ENTRY"){
 					dataFactory._alert("Error","Duplicate Email Found")
@@ -384,7 +384,7 @@ angular.module('starter.controllers', [])
 	checkProto = {is_checked:false}
 
 	dataFactory._loading(true,'Fetching Organizations');
-	dataFactory.service('GET','http://app.octantapp.com/api/organization').
+	dataFactory.service('GET','http://testapp.octantapp.com/api/organization').
 	then(function(res){
 		ob = res.data.feed_id;
 		co = {}
@@ -395,7 +395,7 @@ angular.module('starter.controllers', [])
 		$scope.organizaions = co;
 
 		dataFactory._loading(true,'Fetching Your Organizations');
-		dataFactory.service('POST','http://app.octantapp.com/api/donor_org_get',{donor_id:App_Session.donor_id,is_active:1}).
+		dataFactory.service('POST','http://testapp.octantapp.com/api/donor_org_get',{donor_id:App_Session.donor_id,is_active:1}).
 		then(function(res){
 			console.log(res.data);
 			for(key in res.data){
@@ -476,7 +476,7 @@ angular.module('starter.controllers', [])
 
 			console.log($scope.data);
 
-			dataFactory.service('POST','http://app.octantapp.com/api/donor_org',$scope.data).
+			dataFactory.service('POST','http://testapp.octantapp.com/api/donor_org',$scope.data).
 				then(function(res){
 					r = res;
 					console.log(res);
@@ -529,7 +529,7 @@ angular.module('starter.controllers', [])
 				var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 	    		if(re.test($scope.forgot.email)){
 					dataFactory._loading(true,'Resetting Password');
-	    			dataFactory.service('POST','http://app.octantapp.com/api/reset_pswrd',$scope.forgot).
+	    			dataFactory.service('POST','http://testapp.octantapp.com/api/reset_pswrd',$scope.forgot).
 	    				success(function(data, textStatus, xhr){
 	    					console.log(data);
 	    					if(!data.Error){
@@ -546,14 +546,14 @@ angular.module('starter.controllers', [])
 		    						$scope.data.donor_id = data.donor_id;
 		    						console.log(d);
 
-		    						dataFactory.service('PUT','http://app.octantapp.com/api/reset_pswrd_upd',$scope.data).
+		    						dataFactory.service('PUT','http://testapp.octantapp.com/api/reset_pswrd_upd',$scope.data).
 		    						then(function(res){
 		    							// console.log(res);
 		    							dataFactory._alert('Updated Successfully');
 		    							$scope.closeMod();
 		    						})
 		    					});
-		    					// dataFactory.service('PUT','http://app.octantapp.com/api/reset_pswrd_upd',$scope.data)
+		    					// dataFactory.service('PUT','http://testapp.octantapp.com/api/reset_pswrd_upd',$scope.data)
 		    				}
 		    				else{
 		    					dataFactory._alert("Error","The credentials do not match");
@@ -583,7 +583,7 @@ angular.module('starter.controllers', [])
 
 	$scope.EmailCreds = function(){
 		dataFactory._loading(true,'Sending Email');
-		dataFactory.service('POST','http://app.octantapp.com/api/forgetpassword/123456789',$scope.forgot).
+		dataFactory.service('POST','http://testapp.octantapp.com/api/forgetpassword/123456789',$scope.forgot).
 		then(function(res){
 			console.log(res.data);
 		}).
@@ -630,7 +630,7 @@ angular.module('starter.controllers', [])
 	body = [];
 	$scope.terms = API.storage.get("terms");
 
-	dataFactory.service('GET',"http://app.octantapp.com/api/do/oct5678093672").
+	dataFactory.service('GET',"http://testapp.octantapp.com/api/do/oct5678093672").
 		then(function(res){
 			k = res.data.tc_id;
 			terms = [];
@@ -684,7 +684,7 @@ angular.module('starter.controllers', [])
 	body = [];
 	$scope.privacy = API.storage.get("privacy");
 
-	dataFactory.service('GET',"http://app.octantapp.com/api/pr/oct5678093672").
+	dataFactory.service('GET',"http://testapp.octantapp.com/api/pr/oct5678093672").
 		then(function(res){
 			k = res.data.tc_id;
 			privacy = [];
@@ -770,7 +770,7 @@ angular.module('starter.controllers', [])
 		// dataFactory._loading(true,'logging in');
 		$scope.user.password = md5.createHash($scope.user.pass || '');
 		// console.log($scope.user);
-		dataFactory.service('POST',"http://app.octantapp.com/api/userlogin/123456789",
+		dataFactory.service('POST',"http://testapp.octantapp.com/api/userlogin/123456789",
 			$scope.user).
 			then(function(res){
 
@@ -789,7 +789,7 @@ angular.module('starter.controllers', [])
 					if(login_info==2){
 						$scope.getPass().
 						then(function(dat){
-    						dataFactory.service('PUT','http://app.octantapp.com/api/reset_pswrd_upd',{'password':dat,donor_id:App_Session.donor_id}).
+    						dataFactory.service('PUT','http://testapp.octantapp.com/api/reset_pswrd_upd',{'password':dat,donor_id:App_Session.donor_id}).
     						then(function(res){
     							console.log(res);
     							dataFactory._alert('Updated Successfully');
@@ -970,7 +970,7 @@ angular.module('starter.controllers', [])
 			"save_login_info_app": null
 		}
 
-		dataFactory.service('Post', ' http://app.octantapp.com/api/donor', $scope.newuser).
+		dataFactory.service('Post', ' http://testapp.octantapp.com/api/donor', $scope.newuser).
 			success(function (data, status, headers, config) {
 				console.log(data);
 				console.log('success');
@@ -1012,7 +1012,7 @@ angular.module('starter.controllers', [])
 	var donid = App_Session.donor_id;
 
 	dataFactory._loading(true,'Loading Events');
-	dataFactory.service("POST","http://app.octantapp.com/api/msg_feeds",{'donor_id':donid}).
+	dataFactory.service("POST","http://testapp.octantapp.com/api/msg_feeds",{'donor_id':donid}).
 		success(function(data, textStatus, xhr){
 			var feeder = {};
 			var x = data.feed_id;
@@ -1053,7 +1053,7 @@ angular.module('starter.controllers', [])
 	var donid = App_Session.donor_id;
 
 	dataFactory._loading(true,'Loading Messages');
-	dataFactory.service("POST","http://app.octantapp.com/api/msg_feeds",{'donor_id':donid}).
+	dataFactory.service("POST","http://testapp.octantapp.com/api/msg_feeds",{'donor_id':donid}).
 		success(function(data, textStatus, xhr){
 			var feeder = {};
 			var x = data.feed_id;
@@ -1087,7 +1087,7 @@ angular.module('starter.controllers', [])
 		
 	$scope.isreadchk = function(message_id){
 		$scope.messages[message_id].is_read = true;
-		dataFactory.service('POST','http://app.octantapp.com/api/message_read/123456789',{'msg_id':message_id, 'donor_id':donid}).
+		dataFactory.service('POST','http://testapp.octantapp.com/api/message_read/123456789',{'msg_id':message_id, 'donor_id':donid}).
 			success(function(data, textStatus, xhr) {
 				console.log(data);
 			}).
@@ -1141,10 +1141,10 @@ angular.module('starter.controllers', [])
 	$scope.billing = {}
 
 	dataFactory._loading(true,'Fetching Organizaions');
-	dataFactory.service('POST','http://app.octantapp.com/api/donor_org_get',{donor_id:App_Session.donor_id,is_active:1}).
+	dataFactory.service('POST','http://testapp.octantapp.com/api/donor_org_get',{donor_id:App_Session.donor_id,is_active:1}).
 	then(function(res){
 		sorgids = res.data;
-		dataFactory.service('GET','http://app.octantapp.com/api/organization').
+		dataFactory.service('GET','http://testapp.octantapp.com/api/organization').
 		then(function(res){
 			console.log("data:",res.data)
 			ob = res.data.feed_id;
@@ -1238,7 +1238,7 @@ angular.module('starter.controllers', [])
 						org_id: $scope.billing.org_id,
 						amount: $scope.amountCent
 					}
-					dataFactory.service('POST','http://app.octantapp.com/scrape',$scope.d).
+					dataFactory.service('POST','http://testapp.octantapp.com/scrape',$scope.d).
 					then().
 					finally(function(){
 						var a = document.createElement('a');
@@ -1273,7 +1273,7 @@ angular.module('starter.controllers', [])
 	    	$scope.billing = $scope.slides[index-1];
 	    	console.log($scope.billing.org_message)
 
-			dataFactory.service('POST','http://app.octantapp.com/api/defaultdon',{'org_id':$scope.billing.org_id}).
+			dataFactory.service('POST','http://testapp.octantapp.com/api/defaultdon',{'org_id':$scope.billing.org_id}).
 			then(function(res){
 				console.log(res.data);
 				rserr = res.data.Error;
@@ -1399,7 +1399,7 @@ angular.module('starter.controllers', [])
 			return
 		}
 
-    	dataFactory.service('POST','http://app.octantapp.com/scrape',$scope.postData).
+    	dataFactory.service('POST','http://testapp.octantapp.com/scrape',$scope.postData).
     	then(function(res){
     		if(res.data.success){
     			dataFactory._alert(
@@ -1459,10 +1459,10 @@ angular.module('starter.controllers', [])
 	$scope.billing = {}
 
 	dataFactory._loading(true,'Fetching your Organizaions');
-	dataFactory.service('GET','http://app.octantapp.com/api/organization').
+	dataFactory.service('GET','http://testapp.octantapp.com/api/organization').
 	then(function(res){
 		ob = res.data.feed_id;
-		dataFactory.service('POST','http://app.octantapp.com/api/donor_org_get',{donor_id:App_Session.donor_id,is_active:1}).
+		dataFactory.service('POST','http://testapp.octantapp.com/api/donor_org_get',{donor_id:App_Session.donor_id,is_active:1}).
 		then(function(res){
 			sorgids = res.data;
 				$scope.organizaions = ob
@@ -1534,7 +1534,7 @@ angular.module('starter.controllers', [])
 						address_state &&
 						email ){
 	
-					dataFactory.service('POST','http://app.octantapp.com/api/pledge',$scope.data).
+					dataFactory.service('POST','http://testapp.octantapp.com/api/pledge',$scope.data).
 					then(function(res){
 						console.log(res);
 						$scope.showAlert();
@@ -1564,7 +1564,7 @@ angular.module('starter.controllers', [])
 
 	    	$scope.billing = $scope.slides[index-1];
 
-			dataFactory.service('POST','http://app.octantapp.com/api/defaultdon',{'org_id':$scope.billing.org_id}).
+			dataFactory.service('POST','http://testapp.octantapp.com/api/defaultdon',{'org_id':$scope.billing.org_id}).
 			then(function(res){
 				console.log(res.data);
 				rserr = res.data.Error;
@@ -1712,7 +1712,7 @@ angular.module('starter.controllers', [])
 			return gps
 		},
 		sec_question: function(){
-		    return this.service('GET','http://app.octantapp.com/api/sec_quest')
+		    return this.service('GET','http://testapp.octantapp.com/api/sec_quest')
 		}
 	}
 
